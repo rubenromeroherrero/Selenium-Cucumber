@@ -6,7 +6,6 @@ The purpose of this repository is to be able to start with test automation throu
 I am managing all the necessary dependencies through Gradle: 
  - Gradle 7.5
  - Cucumber to cover the most critical aspects of the app documented: 
- - 
     // https://mvnrepository.com/artifact/info.cukes/cucumber-junit
     testImplementation 'io.cucumber:cucumber-java:7.5.0'
     testImplementation 'io.cucumber:cucumber-junit:7.5.0'
