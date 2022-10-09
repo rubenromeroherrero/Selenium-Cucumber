@@ -7,11 +7,11 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(publish = true,
         // Donde están los features ubicados
-        features = "src/test/resources/features",
+        features = "src/test/resources/features/test1_google",
         // Manera en la que decimos dónde están las definiciones para los steps/features
         glue = "steps")
 
 // Ejecutamos los tests/features
-public class runner {
+public class runner_test1 {
 
 }

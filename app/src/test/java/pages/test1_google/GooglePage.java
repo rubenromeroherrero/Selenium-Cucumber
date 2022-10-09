@@ -1,4 +1,6 @@
-package pages;
+package pages.test1_google;
+
+import pages.BasePage;
 
 public class GooglePage extends BasePage {
 

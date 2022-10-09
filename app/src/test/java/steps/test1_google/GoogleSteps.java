@@ -1,12 +1,8 @@
-package steps;
+package steps.test1_google;
 
 // Importamos lo que vamos necesitamos de la librería de cucumber 
 import io.cucumber.java.en.*;
-//import io.cucumber.java.en.Given;
-//import io.cucumber.java.en.When;
-//import io.cucumber.java.en.And;
-//import io.cucumber.java.en.Then;
-import pages.GooglePage;
+import pages.test1_google.GooglePage;
 
 // Steps Definitions
 public class GoogleSteps {
