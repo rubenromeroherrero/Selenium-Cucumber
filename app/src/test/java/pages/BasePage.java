@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 // POM => Patrón de diseño: manera de estructurar nuestro código para un mejor
@@ -38,28 +39,64 @@ public class BasePage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
+    // 1- Función pública para navegar a una url dada
     public static void navigateTo(String url) {
         driver.get(url);
     }
 
+    // 2- Función privada para poder encontrar un elemento por un xpath
     // Devolvemos el webElement haciendo una espera hasta que el webElement esté o
     // sino lanza un error pasados los 10 segundos
-    private WebElement findElement(String locator) {
+    private WebElement findElementByXpath(String locator) {
         // Devuelve un webElement
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
     }
 
-    // Función pública para seleccionar elementos
-    public void clickElement(String locator) {
-        // Dado un xpath (locator dado) => si lo localiza hace el click
-        findElement(locator).click();
+    // 3- Función privada para poder encontrar un elemento por ID
+    private WebElement findElementById(String locator) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locator)));
     }
 
-    // Función pública para escribir elementos
+    // 4- Función pública para seleccionar elementos
+    public void clickElement(String locator) {
+        // Dado un xpath (locator dado) => si lo localiza hace el click
+        findElementByXpath(locator).click();
+    }
+
+    // 5- Función pública para escribir elementos
     public void writeElement(String locator, String textToWrite) {
         // Nos aseguramos que primero limpiamos el campo de texto
-        findElement(locator).clear();
+        findElementByXpath(locator).clear();
         // Escribimos el texto con la función importada de la librería de selenium
-        findElement(locator).sendKeys(textToWrite);
+        findElementByXpath(locator).sendKeys(textToWrite);
     }
+
+    // 6- Función pública para seleccionar elemento de un dropdown a partir de value
+    public void selectFromDropdownByValue(String locator, String valueToSelect) {
+        // Generar instancia del select => guardar el objeto con elementos del dropdown
+        Select dropdown = new Select(findElementById(locator));
+
+        // Seleccionamos del objeto Select dropdown por valor dado
+        dropdown.selectByValue(valueToSelect);
+    }
+
+    // 7- Función pública para seleccionar un elemento de un dropdown a partir de id
+    public void selectFromDropdownByIndex(String locator, int indexToSelect) {
+        // Generar instancia del select => guardar el objeto con elementos del dropdown
+        Select inputSelectTopic = new Select(findElementById(locator));
+
+        // Seleccionamos del objeto Select dropdown por valor dado
+        inputSelectTopic.selectByIndex(indexToSelect);
+    }
+
+    // 8- Función pública para seleccionar un elemento de un dropdown a partir de
+    // text
+    public void selectFromDropdownByText(String locator, String textToSelect) {
+        // Generar instancia del select => guardar el objeto con elementos del dropdown
+        Select dropdown = new Select(findElementById(locator));
+
+        // Seleccionamos del objeto Select dropdown por valor dado
+        dropdown.selectByVisibleText(textToSelect);
+    }
+
 }
