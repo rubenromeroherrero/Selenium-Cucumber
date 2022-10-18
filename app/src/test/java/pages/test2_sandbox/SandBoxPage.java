@@ -10,6 +10,9 @@ public class SandBoxPage extends BasePage {
         super(driver);
     }
 
+    // Para correr static server necesitamos npm install -g static-server
+    // Después accedemos a la ruta en la cual tenemos el index.html con el proyecto
+    // escribimos en consola static-server y levantamos el servidor
     public void navigateToSandbox() {
         navigateTo("http://localhost:9080/");
     }
