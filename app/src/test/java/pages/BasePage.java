@@ -1,9 +1,13 @@
 package pages;
 
 import java.time.Duration;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 // POM => Patrón de diseño: manera de estructurar nuestro código para un mejor
@@ -36,5 +40,26 @@ public class BasePage {
 
     public static void navigateTo(String url) {
         driver.get(url);
+    }
+
+    // Devolvemos el webElement haciendo una espera hasta que el webElement esté o
+    // sino lanza un error pasados los 10 segundos
+    private WebElement findElement(String locator) {
+        // Devuelve un webElement
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+    }
+
+    // Función pública para seleccionar elementos
+    public void clickElement(String locator) {
+        // Dado un xpath (locator dado) => si lo localiza hace el click
+        findElement(locator).click();
+    }
+
+    // Función pública para escribir elementos
+    public void writeElement(String locator, String textToWrite) {
+        // Nos aseguramos que primero limpiamos el campo de texto
+        findElement(locator).clear();
+        // Escribimos el texto con la función importada de la librería de selenium
+        findElement(locator).sendKeys(textToWrite);
     }
 }
