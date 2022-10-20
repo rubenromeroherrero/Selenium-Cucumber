@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,6 +19,9 @@ public class BasePage {
     // static => un sólo valor de driver para todas las clases
     protected static WebDriver driver;
     private static WebDriverWait wait;
+
+    // Acciones del raton
+    private static Actions actions;
 
     // Creamos el webDriver UNA SOLA VEZ para usarlo en todas las páginas
     // Cada vez que usemos este webDriver, esperará 10 segundos
@@ -99,4 +103,19 @@ public class BasePage {
         dropdown.selectByVisibleText(textToSelect);
     }
 
+    // ACCIONES DEL RATON
+    // 1- Hover
+    public void hoverOverElement(String locator) {
+        actions.moveToElement(findElementByXpath(locator));
+    }
+
+    // 2- Doble click
+    public void doubleClick(String locator) {
+        actions.doubleClick(findElementByXpath(locator));
+    }
+
+    // 3- Right click
+    public void rightClick(String locator) {
+        actions.contextClick(findElementByXpath(locator));
+    }
 }
