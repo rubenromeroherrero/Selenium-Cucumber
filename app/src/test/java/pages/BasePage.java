@@ -23,7 +23,7 @@ public class BasePage {
     // Acciones del raton
     private static Actions actions;
 
-    // Creamos el webDriver UNA SOLA VEZ para usarlo en todas las páginas
+    // Instanciamos/creamos el webDriver 1 SOLA VEZ para usarlo en todas las páginas
     // Cada vez que usemos este webDriver, esperará 10 segundos
     static {
         // Establecemos la ruta del chromeDriver para poder utilizar la instancia de
@@ -33,6 +33,9 @@ public class BasePage {
 
         ChromeOptions chromeOptions = new ChromeOptions();
         driver = new ChromeDriver(chromeOptions);
+        // nos permite poder reutilizarlo luego siempre que vayamos a intentar buscar un
+        // WebElement => si no lo encuentra, lo busca durante 10 segundos y sino lanza
+        // un error
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
@@ -52,7 +55,7 @@ public class BasePage {
     // Devolvemos el webElement haciendo una espera hasta que el webElement esté o
     // sino lanza un error pasados los 10 segundos
     private WebElement findElementByXpath(String locator) {
-        // Devuelve un webElement
+        // Devuelve 1 webElement => en caso que no lo encuentre a la primerar tiene 10s
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
     }
 
