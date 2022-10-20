@@ -121,4 +121,23 @@ public class BasePage {
     public void rightClick(String locator) {
         actions.contextClick(findElementByXpath(locator));
     }
+
+    // CONTROL DE ALERTAS
+    // Control de mensajes que aparecen al entrar en una web (newsletter etc)
+    // frame/iframe => pagina como dentro de otra página
+    // 1- Cambiar a la subpágina por ejemplo vídeos de youtube embebidos en la web
+    public void swithcToiFrame(int iFrameIndex) {
+        driver.switchTo().frame(iFrameIndex);
+    }
+
+    // 2- Cambiar a la página principal otra vez
+    public void swithToParentFrame() {
+        driver.switchTo().parentFrame();
+    }
+
+    // 3- Podemos aceptar/rechazar o validar contenido de un ALERT en el DOM
+    // inhabilita la web
+    public void dismissAlert() {
+        driver.switchTo().alert().dismiss();
+    }
 }
