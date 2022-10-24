@@ -64,6 +64,11 @@ public class BasePage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locator)));
     }
 
+    // 3.1- Función privada para poder encontrar un elemento por la Class
+    private WebElement findElementByClass(String locator) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(locator)));
+    }
+
     // 4- Función pública para seleccionar elementos
     public void clickElement(String locator) {
         // Dado un xpath (locator dado) => si lo localiza hace el click
@@ -139,5 +144,30 @@ public class BasePage {
     // inhabilita la web
     public void dismissAlert() {
         driver.switchTo().alert().dismiss();
+    }
+
+    // ASSERTIONS
+    // 1- Devolver el texto de un elemento para validaciones de tipo assertions
+    public String textFromElement(String locator) {
+        return findElementByClass(locator).getText();
+    }
+
+    // 2- Devolver un booleano de si un objeto está o no está en la página
+    public Boolean elementIsDisplayedOrNot(String locator) {
+        // isDisplayed() => valida que un elemento esté ahí
+        return findElementByClass(locator).isDisplayed();
+    }
+
+    // 3- Devolver un booleano si un botón está habilitado
+    public Boolean elementIsActiveOrNot(String locator) {
+        // isEnabled() => valida que un botón esté habilitado para ser clickado
+        // para los casos en los formularios que puedan estar deshabilitados
+        return findElementByClass(locator).isEnabled();
+    }
+
+    // 4- Devolver un booleano si un elemento está seleccionado (input form)
+    public Boolean elementIsSelected(String locator) {
+        // isSelected() => valida que un elemento esté seleccionado (input radio)
+        return findElementByClass(locator).isSelected();
     }
 }
