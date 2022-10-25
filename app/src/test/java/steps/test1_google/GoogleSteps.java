@@ -34,12 +34,6 @@ public class GoogleSteps {
     public void validateResults() {
         // Validamos que contenga un elemento en concreto llamado "Selenium"
         Assert.assertEquals("Selenium", google.compareValues());
-        // Validamos que contenga ese elemento la búsqueda y mostramos en nuestro test
-        // el mensaje que ha ido todo correcto"
-        Assert.assertTrue("Ha ido todo correcto", google.tellMeStatus());
-
-        // Assert.assertTrue("El elemento no ha sido encontrado",
-        // google.tellMeStatus());
     }
 
     @Then("^I can validate that the value is correct$")
