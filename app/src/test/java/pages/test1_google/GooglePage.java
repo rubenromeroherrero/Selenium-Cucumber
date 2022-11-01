@@ -1,5 +1,7 @@
 package pages.test1_google;
 
+import java.util.NoSuchElementException;
+
 import pages.BasePage;
 
 public class GooglePage extends BasePage {
@@ -26,7 +28,13 @@ public class GooglePage extends BasePage {
     }
 
     public void clickGoogleSearch() {
-        clickElement(searchButton);
+        // Manejo de errores, para mostrar por consola si falla el buscar un elemento
+        try {
+            clickElement(searchButton);
+        } catch (NoSuchElementException e) {
+            System.out.println("The click element for doing a search could not be found.");
+            e.printStackTrace();
+        }
     }
 
     public void enterSearchCriteria(String argument) {

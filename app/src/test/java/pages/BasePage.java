@@ -3,6 +3,7 @@ package pages;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -49,6 +50,12 @@ public class BasePage {
     // 1- Función pública para navegar a una url dada
     public static void navigateTo(String url) {
         driver.get(url);
+    }
+
+    // 1.1- Función pública para cerrar el navegador tras las pruebas
+    public static void closeBrowser() {
+        // cierra la instancia del browser quit()
+        driver.quit();
     }
 
     // 2- Función privada para poder encontrar un elemento por un xpath
@@ -143,7 +150,12 @@ public class BasePage {
     // 3- Podemos aceptar/rechazar o validar contenido de un ALERT en el DOM
     // inhabilita la web
     public void dismissAlert() {
-        driver.switchTo().alert().dismiss();
+        // Manejo de errores
+        try {
+            driver.switchTo().alert().dismiss();
+        } catch (NoAlertPresentException e) {
+            e.printStackTrace();
+        }
     }
 
     // ASSERTIONS
