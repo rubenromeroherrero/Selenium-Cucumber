@@ -17,6 +17,7 @@ import pages.BasePage;
                 tags = "@Test")
 
 // Ejecutamos los tests/features e indicamos la carpeta del test a compilar
+// Si falla después de cierto tiempo ACTUALIZAR EL DRIVER DE CHROME
 public class runner_test1 {
         @AfterClass
         public static void cleanDriver() {
