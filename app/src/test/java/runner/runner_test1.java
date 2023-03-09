@@ -18,6 +18,8 @@ import pages.BasePage;
 
 // Ejecutamos los tests/features e indicamos la carpeta del test a compilar
 // Si falla después de cierto tiempo ACTUALIZAR EL DRIVER DE CHROME
+// Si falla import org => ir a command palete (ctrol+shift+p => Clean java
+// language)
 public class runner_test1 {
         @AfterClass
         public static void cleanDriver() {
